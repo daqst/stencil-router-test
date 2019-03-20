@@ -7,63 +7,58 @@
 
 import '@stencil/core';
 
-
+import '@stencil/router';
+import '@stencil/state-tunnel';
+import {
+  RouterHistory,
+} from '@stencil/router';
 
 
 export namespace Components {
 
-  interface MyComponent {
-    /**
-    * The first name
-    */
-    'first': string;
-    /**
-    * The last name
-    */
-    'last': string;
-    /**
-    * The middle name
-    */
-    'middle': string;
+  interface RoutedApp {}
+  interface RoutedAppAttributes extends StencilHTMLAttributes {}
+
+  interface RoutedPage {
+    'history': RouterHistory;
   }
-  interface MyComponentAttributes extends StencilHTMLAttributes {
-    /**
-    * The first name
-    */
-    'first'?: string;
-    /**
-    * The last name
-    */
-    'last'?: string;
-    /**
-    * The middle name
-    */
-    'middle'?: string;
+  interface RoutedPageAttributes extends StencilHTMLAttributes {
+    'history': RouterHistory;
   }
 }
 
 declare global {
   interface StencilElementInterfaces {
-    'MyComponent': Components.MyComponent;
+    'RoutedApp': Components.RoutedApp;
+    'RoutedPage': Components.RoutedPage;
   }
 
   interface StencilIntrinsicElements {
-    'my-component': Components.MyComponentAttributes;
+    'routed-app': Components.RoutedAppAttributes;
+    'routed-page': Components.RoutedPageAttributes;
   }
 
 
-  interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
-  var HTMLMyComponentElement: {
-    prototype: HTMLMyComponentElement;
-    new (): HTMLMyComponentElement;
+  interface HTMLRoutedAppElement extends Components.RoutedApp, HTMLStencilElement {}
+  var HTMLRoutedAppElement: {
+    prototype: HTMLRoutedAppElement;
+    new (): HTMLRoutedAppElement;
+  };
+
+  interface HTMLRoutedPageElement extends Components.RoutedPage, HTMLStencilElement {}
+  var HTMLRoutedPageElement: {
+    prototype: HTMLRoutedPageElement;
+    new (): HTMLRoutedPageElement;
   };
 
   interface HTMLElementTagNameMap {
-    'my-component': HTMLMyComponentElement
+    'routed-app': HTMLRoutedAppElement
+    'routed-page': HTMLRoutedPageElement
   }
 
   interface ElementTagNameMap {
-    'my-component': HTMLMyComponentElement;
+    'routed-app': HTMLRoutedAppElement;
+    'routed-page': HTMLRoutedPageElement;
   }
 
 
